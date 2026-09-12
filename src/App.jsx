@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FiMenu, FiX, FiStar, FiTrash2, FiCheck } from 'react-icons/fi';
@@ -30,28 +30,28 @@ export default function App() {
       return;
     }
     setStack([...stack, tech]);
-    toast.success(`🚀 Added ${tech.name} to your stack!`);
+    toast.success(` Added ${tech.name} to your stack!`);
   };
 
   // Remove Single Item Handler
   const handleRemoveItem = (id, name) => {
     setStack(stack.filter((item) => item.id !== id));
-    toast.info(`❌ Removed ${name} from stack.`);
+    toast.info(` Removed ${name} from stack.`);
   };
 
   // Remove All Handler
   const handleRemoveAll = () => {
     if (stack.length === 0) return;
     setStack([]);
-    toast.error('🗑️ Cleared all items from your stack!');
+    toast.error(' Cleared all items from your stack!');
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+    <div className="w-full min-h-screen bg-white text-slate-800 font-sans overflow-x-hidden m-0 p-0">
       <ToastContainer position="top-right" autoClose={2000} />
 
       {/* --- NAVBAR --- */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+      <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           {/* Desktop Left: Brand Logo & Name */}
@@ -62,29 +62,6 @@ export default function App() {
             <span className="text-xl font-extrabold tracking-tight text-slate-900">
               Dev <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">Stack</span>
             </span>
-          </div>
-
-          {/* Mobile Navbar Layout: Left (Hamburger), Center (Brand Logo), Right (Sign In & Sign Up) */}
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-700 text-2xl focus:outline-none p-1">
-              {mobileMenuOpen ? <FiX /> : <FiMenu />}
-            </button>
-          </div>
-
-          <div className="md:hidden flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-sm justify-center shadow">
-              DS
-            </div>
-            <span className="text-base font-extrabold tracking-tight text-slate-900">
-              Dev <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">Stack</span>
-            </span>
-          </div>
-
-          <div className="md:hidden flex items-center gap-2">
-            <button className="text-xs font-semibold text-slate-700 hover:text-pink-600 px-2 py-1">Sign In</button>
-            <button className="text-xs font-semibold text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow">
-              Sign Up
-            </button>
           </div>
 
           {/* Center: Desktop Nav Links */}
@@ -99,10 +76,39 @@ export default function App() {
           {/* Desktop Right: Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <button className="text-sm font-semibold text-slate-700 hover:text-pink-600 transition px-3 py-2">Sign In</button>
+
             <button className="text-sm font-semibold text-white px-6 py-2.5 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow-md hover:opacity-90 transition">
               Sign Up
             </button>
+            
           </div>
+
+          {/* --- MOBILE NAVBAR (Strict 3-part layout) --- */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            {/* Left: Hamburger menu icon */}
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-700 text-2xl focus:outline-none p-1">
+              {mobileMenuOpen ? <FiX /> : <FiMenu />}
+            </button>
+
+            {/* Center: Brand logo + Name */}
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-xs justify-center shadow">
+                DS
+              </div>
+              <span className="text-sm font-extrabold tracking-tight text-slate-900">
+                Dev <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">Stack</span>
+              </span>
+            </div>
+
+            {/* Right: Sign In & Sign Up buttons */}
+            <div className="flex items-center gap-1.5">
+              <button className="text-xs font-semibold text-slate-700 hover:text-pink-600 px-1 py-1">Sign In</button>
+              <button className="text-xs font-semibold text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow">
+                Sign Up
+              </button>
+            </div>
+          </div>
+
         </div>
 
         {/* Mobile Dropdown Menu */}
@@ -118,23 +124,23 @@ export default function App() {
       </nav>
 
       {/* --- HERO / BANNER SECTION --- */}
-      <section id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+      <section id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+
+        <div className="space-y-6 flex flex-col items-center lg:items-start">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Build Your Ideal <br />
             <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">
               Development Stack
             </span>
           </h1>
-          <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 max-w-lg leading-relaxed">
             Explore frontend, backend, database, and tooling options, compare them side by side, and put together the stack that fits your next project.
           </p>
-          <div className="flex flex-wrap gap-4 pt-2">
-            <a href="#technologies" className="px-7 py-3.5 rounded-xl text-white font-semibold bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow-lg hover:opacity-90 transition">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2 w-full">
+            <a href="#technologies" className="px-6 sm:px-7 py-3.5 rounded-xl text-white font-semibold bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow-lg hover:opacity-90 transition">
               Explore Technologies
             </a>
-            <a href="#about" className="px-7 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 transition">
+            <a href="#about" className="px-6 sm:px-7 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 transition">
               Learn More
             </a>
           </div>
@@ -142,7 +148,7 @@ export default function App() {
 
         {/* Right: Banner Image */}
         <div className="flex justify-center">
-          <div className="w-full max-w-md h-80 sm:h-96 bg-gradient-to-tr from-pink-500/5 via-purple-500/10 to-indigo-500/5 rounded-3xl p-6 flex items-center justify-center border border-slate-200 shadow-inner">
+          <div className="w-full max-w-md h-72 sm:h-96 flex items-center justify-center p-2">
             <img
               src="./src/assets/banner-stack.png"
               alt="Banner Stack Illustration"
@@ -153,12 +159,12 @@ export default function App() {
       </section>
 
       {/* --- MAIN CONTENT & SIDEBAR SECTION --- */}
-      <section id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-10">
-          <h2 className="text-3xl font-extrabold text-slate-900">
+      <section id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mb-10 text-center lg:text-left">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             Explore the <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">Technologies</span>
           </h2>
-          <p className="text-slate-600 mt-1">Pick one technology per category to build your ideal stack.</p>
+          <p className="text-sm sm:text-base text-slate-600 mt-1">Pick one technology per category to build your ideal stack.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
@@ -174,12 +180,12 @@ export default function App() {
                 {technologies.map((tech) => {
                   const isAdded = stack.some((item) => item.id === tech.id);
                   return (
-                    <div key={tech.id} className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                    <div key={tech.id} className="bg-white rounded-2xl border border-slate-100 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition">
                       <div>
                         {/* Card Header: Icon & Badge */}
                         <div className="flex items-center justify-between mb-4">
                           <img src={tech.icon} alt={tech.name} className="w-10 h-10 object-contain" />
-                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-pink-600 border border-pink-100">
+                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-50 text-pink-600 border border-slate-100">
                             {tech.badge}
                           </span>
                         </div>
@@ -190,7 +196,7 @@ export default function App() {
 
                         {/* Metadata Details */}
                         <div className="flex items-center justify-between text-xs text-slate-500 mb-6 pt-3 border-t border-slate-100">
-                          <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium text-slate-700">{tech.category}</span>
+                          <span className="bg-slate-50 px-2.5 py-1 rounded-md font-medium text-slate-700">{tech.category}</span>
                           <span className="font-medium text-slate-600">{tech.difficulty}</span>
                           <span className="flex items-center gap-1 font-semibold text-amber-500">
                             <FiStar className="fill-amber-500" /> {tech.rating}
@@ -204,7 +210,7 @@ export default function App() {
                         disabled={isAdded}
                         className={`w-full py-2.5 rounded-xl font-semibold text-sm transition flex items-center justify-center gap-2 ${
                           isAdded
-                            ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                            ? 'bg-slate-900 text-white cursor-not-allowed shadow-inner'
                             : 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm'
                         }`}
                       >
@@ -218,7 +224,7 @@ export default function App() {
           </div>
 
           {/* Your Stack Sidebar (Sticky Panel) */}
-          <div className="lg:col-span-1 bg-white rounded-2xl border border-slate-200 p-6 sticky top-28 shadow-sm">
+          <div className="lg:col-span-1 bg-white rounded-2xl border border-slate-100 p-6 sticky top-28 shadow-sm">
             <h3 className="text-xl font-bold text-slate-900 mb-1">Your Stack</h3>
             <p className="text-xs font-medium text-slate-500 mb-6">
               {stack.length} Technology Selected
@@ -231,7 +237,7 @@ export default function App() {
             ) : (
               <div className="space-y-3 mb-6 max-h-[350px] overflow-y-auto pr-1">
                 {stack.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50">
+                  <div key={item.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-slate-50/50">
                     <div className="flex items-center gap-3">
                       <img src={item.icon} alt={item.name} className="w-8 h-8 object-contain" />
                       <div>
@@ -264,9 +270,9 @@ export default function App() {
       </section>
 
       {/* --- FOOTER SECTION --- */}
-      <footer id="contact" className="bg-white border-t border-slate-200 mt-20 pt-16 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-10">
-          <div className="md:col-span-2 space-y-4">
+      <footer id="contact" className="w-full bg-white border-t border-slate-100 mt-20 pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-10 text-center md:text-left">
+          <div className="md:col-span-2 space-y-4 flex flex-col items-center md:items-start">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-md justify-center">
                 DS
@@ -276,10 +282,10 @@ export default function App() {
             <p className="text-sm text-slate-600 max-w-sm">
               Curated tools, technologies, and resources for developers building modern software.
             </p>
-            <div className="flex gap-4 text-sm font-semibold text-slate-600">
+            <div className="flex gap-4 text-sm font-semibold text-slate-600 justify-center md:justify-start">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">GitHub</a>
               <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">Twitter</a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">LinkedIn</a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">LinkedIn</a>
             </div>
           </div>
 
@@ -310,7 +316,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 text-center">
           <p>© 2026 Dev Stack. All rights reserved.</p>
           <div className="flex gap-4 mt-2 sm:mt-0">
             <a href="#privacy" className="hover:underline">Privacy</a>

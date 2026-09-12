@@ -30,20 +30,20 @@ export default function App() {
       return;
     }
     setStack([...stack, tech]);
-    toast.success(` Added ${tech.name} to your stack!`);
+    toast.success(`🚀 Added ${tech.name} to your stack!`);
   };
 
   // Remove Single Item Handler
   const handleRemoveItem = (id, name) => {
     setStack(stack.filter((item) => item.id !== id));
-    toast.info(` Removed ${name} from stack.`);
+    toast.info(`❌ Removed ${name} from stack.`);
   };
 
   // Remove All Handler
   const handleRemoveAll = () => {
     if (stack.length === 0) return;
     setStack([]);
-    toast.error(' Cleared all items from your stack!');
+    toast.error('🗑️ Cleared all items from your stack!');
   };
 
   return (
@@ -76,11 +76,12 @@ export default function App() {
           {/* Desktop Right: Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <button className="text-sm font-semibold text-slate-700 hover:text-pink-600 transition px-3 py-2">Sign In</button>
-
-            <button className="text-sm font-semibold text-white px-6 py-2.5 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow-md hover:opacity-90 transition">
+            <button 
+              style={{ backgroundColor: '#D91B7E' }}
+              className="text-sm font-semibold text-white px-6 py-2.5 rounded-full shadow-md hover:opacity-90 transition"
+            >
               Sign Up
             </button>
-            
           </div>
 
           {/* --- MOBILE NAVBAR (Strict 3-part layout) --- */}
@@ -103,7 +104,10 @@ export default function App() {
             {/* Right: Sign In & Sign Up buttons */}
             <div className="flex items-center gap-1.5">
               <button className="text-xs font-semibold text-slate-700 hover:text-pink-600 px-1 py-1">Sign In</button>
-              <button className="text-xs font-semibold text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 shadow">
+              <button 
+                style={{ backgroundColor: '#D91B7E' }}
+                className="text-xs font-semibold text-white px-3 py-1.5 rounded-full shadow"
+              >
                 Sign Up
               </button>
             </div>
@@ -124,8 +128,7 @@ export default function App() {
       </nav>
 
       {/* --- HERO / BANNER SECTION --- */}
-      <section id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
-
+      <section id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
         <div className="space-y-6 flex flex-col items-center lg:items-start">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Build Your Ideal <br />
@@ -159,7 +162,7 @@ export default function App() {
       </section>
 
       {/* --- MAIN CONTENT & SIDEBAR SECTION --- */}
-      <section id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-10 text-center lg:text-left">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             Explore the <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">Technologies</span>
@@ -269,59 +272,89 @@ export default function App() {
         </div>
       </section>
 
-      {/* --- FOOTER SECTION --- */}
-      <footer id="contact" className="w-full bg-white border-t border-slate-100 mt-20 pt-16 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-10 text-center md:text-left">
-          <div className="md:col-span-2 space-y-4 flex flex-col items-center md:items-start">
+      {/* --- FOOTER SECTION (Responsive: Centered on Mobile, Multi-column on Desktop) --- */}
+      <footer id="contact" className="w-full bg-white border-t border-slate-100 mt-10 pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Mobile Layout (Centered stack structure matching user image) */}
+          <div className="flex flex-col items-center text-center md:hidden space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-md justify-center">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-base justify-center shadow">
                 DS
               </div>
-              <span className="text-lg font-bold text-slate-900">Dev Stack</span>
+              <span className="text-xl font-extrabold tracking-tight text-slate-900">
+                Dev <span style={{ color: '#D91B7E' }}>Stack</span>
+              </span>
             </div>
-            <p className="text-sm text-slate-600 max-w-sm">
+            
+            <p className="text-sm text-slate-600 max-w-xs leading-relaxed">
               Curated tools, technologies, and resources for developers building modern software.
             </p>
-            <div className="flex gap-4 text-sm font-semibold text-slate-600 justify-center md:justify-start">
+
+            <div className="flex items-center justify-center gap-3 text-sm font-semibold text-slate-600 pt-2 pb-6">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">GitHub</a>
+              <span className="text-slate-300">•</span>
               <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">Twitter</a>
+              <span className="text-slate-300">•</span>
               <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">LinkedIn</a>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Product</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li><a href="#home" className="hover:text-pink-600">Home</a></li>
-              <li><a href="#technologies" className="hover:text-pink-600">Technologies</a></li>
-              <li><a href="#projects" className="hover:text-pink-600">Projects</a></li>
-            </ul>
+          {/* Desktop Layout (Multi-column) */}
+          <div className="hidden md:grid grid-cols-5 gap-10">
+            <div className="col-span-2 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 flex items-center text-white font-bold text-md justify-center">
+                  DS
+                </div>
+                <span className="text-lg font-bold text-slate-900">Dev Stack</span>
+              </div>
+              <p className="text-sm text-slate-600 max-w-sm">
+                Curated tools, technologies, and resources for developers building modern software.
+              </p>
+              <div className="flex gap-4 text-sm font-semibold text-slate-600">
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">GitHub</a>
+                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">Twitter</a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">LinkedIn</a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li><a href="#home" className="hover:text-pink-600">Home</a></li>
+                <li><a href="#technologies" className="hover:text-pink-600">Technologies</a></li>
+                <li><a href="#projects" className="hover:text-pink-600">Projects</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li><a href="#about" className="hover:text-pink-600">About</a></li>
+                <li><a href="#contact" className="hover:text-pink-600">Contact</a></li>
+                <li><a href="#careers" className="hover:text-pink-600">Careers</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li><a href="#privacy" className="hover:text-pink-600">Privacy Policy</a></li>
+                <li><a href="#terms" className="hover:text-pink-600">Terms of Service</a></li>
+              </ul>
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li><a href="#about" className="hover:text-pink-600">About</a></li>
-              <li><a href="#contact" className="hover:text-pink-600">Contact</a></li>
-              <li><a href="#careers" className="hover:text-pink-600">Careers</a></li>
-            </ul>
+          {/* Bottom Bar (Responsive: Centered on mobile, split on desktop) */}
+          <div className="mt-12 pt-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 text-center gap-4">
+            <p>© 2026 Dev Stack. All rights reserved.</p>
+            <div className="flex gap-4">
+              <a href="#privacy" className="hover:underline">Privacy</a>
+              <a href="#terms" className="hover:underline">Terms</a>
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li><a href="#privacy" className="hover:text-pink-600">Privacy Policy</a></li>
-              <li><a href="#terms" className="hover:text-pink-600">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 text-center">
-          <p>© 2026 Dev Stack. All rights reserved.</p>
-          <div className="flex gap-4 mt-2 sm:mt-0">
-            <a href="#privacy" className="hover:underline">Privacy</a>
-            <a href="#terms" className="hover:underline">Terms</a>
-          </div>
         </div>
       </footer>
     </div>

@@ -26,24 +26,24 @@ export default function App() {
   // Add to Stack Handler
   const handleAddToStack = (tech) => {
     if (stack.some((item) => item.id === tech.id)) {
-      toast.warning(`⚠️ ${tech.name} is already in your stack!`);
+      toast.warning(` ${tech.name} is already in your stack!`);
       return;
     }
     setStack([...stack, tech]);
-    toast.success(`🚀 Added ${tech.name} to your stack!`);
+    toast.success(` Added ${tech.name} to your stack!`);
   };
 
   // Remove Single Item Handler
   const handleRemoveItem = (id, name) => {
     setStack(stack.filter((item) => item.id !== id));
-    toast.info(`❌ Removed ${name} from stack.`);
+    toast.info(` Removed ${name} from stack.`);
   };
 
   // Remove All Handler
   const handleRemoveAll = () => {
     if (stack.length === 0) return;
     setStack([]);
-    toast.error('🗑️ Cleared all items from your stack!');
+    toast.error(' Cleared all items from your stack!');
   };
 
   return (

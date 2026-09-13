@@ -154,11 +154,12 @@ export default function App() {
           <div className="w-full max-w-md h-72 sm:h-96 flex items-center justify-center p-2">
             <img
               src="./src/assets/banner-stack.png"
-              alt="Banner Stack Illustration"
+              alt="Banner-Stack-png"
               className="w-full max-w-md h-auto object-contain drop-shadow-xl"
             />
           </div>
         </div>
+        
       </section>
 
       {/* --- MAIN CONTENT & SIDEBAR SECTION --- */}
@@ -214,7 +215,7 @@ export default function App() {
                         className={`w-full py-2.5 rounded-xl font-semibold text-sm transition flex items-center justify-center gap-2 ${
                           isAdded
                             ? 'bg-slate-900 text-white cursor-not-allowed shadow-inner'
-                            : 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm'
+                            : 'bg-slate-900 text-white hover:bg-slate-700 shadow-sm'
                         }`}
                       >
                         {isAdded ? <><FiCheck /> Added to Stack</> : 'Add to Stack'}
